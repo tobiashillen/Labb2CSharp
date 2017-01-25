@@ -1,4 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">BookKeeper</string>
+	<string name="btn_new_entry">Ny händelse</string>
+	<string name="btn_entry_list">Visa alla händelser</string>
+	<string name="btn_create_reports">Skapa rapporter</string>
+	
+	<string name="tv_new_entry_text">Här kan du lägga till nya händelser, antingen inkomster eller utgifter.</string>
+	<string name="rb_income">Inkomst:</string>
+	<string name="rb_expense">Utgift:</string>
+	<string name="tv_date">Datum:</string>
+	<string name="tv_description">Beskrivning:</string>
+	<string name="tv_type">Typ:</string>
+	<string name="tv_account">Till/från konto</string>
+	<string name="tv_amount">Totalt belopp (inkl. moms):</string>
+	<string name="tv_vat">Moms:</string>
+	<string name="btn_add_entry">Lägg till händelse</string>
+	
 </resources>

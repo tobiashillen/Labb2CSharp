@@ -44,14 +44,83 @@ namespace BookKeeper
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int button1 = 2130968576;
+			// aapt resource value: 0x7f040010
+			public const int account_group = 2130968592;
 			
-			// aapt resource value: 0x7f040001
-			public const int button2 = 2130968577;
+			// aapt resource value: 0x7f040013
+			public const int amount_group = 2130968595;
+			
+			// aapt resource value: 0x7f040019
+			public const int btn_add_entry = 2130968601;
 			
 			// aapt resource value: 0x7f040002
-			public const int button3 = 2130968578;
+			public const int btn_create_reports = 2130968578;
+			
+			// aapt resource value: 0x7f040001
+			public const int btn_entry_list = 2130968577;
+			
+			// aapt resource value: 0x7f040000
+			public const int btn_new_entry = 2130968576;
+			
+			// aapt resource value: 0x7f040007
+			public const int date_group = 2130968583;
+			
+			// aapt resource value: 0x7f04000a
+			public const int description_group = 2130968586;
+			
+			// aapt resource value: 0x7f040015
+			public const int ed_amount = 2130968597;
+			
+			// aapt resource value: 0x7f040009
+			public const int ed_date = 2130968585;
+			
+			// aapt resource value: 0x7f04000c
+			public const int ed_description = 2130968588;
+			
+			// aapt resource value: 0x7f040004
+			public const int radio_group = 2130968580;
+			
+			// aapt resource value: 0x7f040006
+			public const int rb_expense = 2130968582;
+			
+			// aapt resource value: 0x7f040005
+			public const int rb_income = 2130968581;
+			
+			// aapt resource value: 0x7f040012
+			public const int spinner_account = 2130968594;
+			
+			// aapt resource value: 0x7f04000f
+			public const int spinner_type = 2130968591;
+			
+			// aapt resource value: 0x7f040018
+			public const int spinner_vat = 2130968600;
+			
+			// aapt resource value: 0x7f040011
+			public const int tv_account = 2130968593;
+			
+			// aapt resource value: 0x7f040014
+			public const int tv_amount = 2130968596;
+			
+			// aapt resource value: 0x7f040008
+			public const int tv_date = 2130968584;
+			
+			// aapt resource value: 0x7f04000b
+			public const int tv_description = 2130968587;
+			
+			// aapt resource value: 0x7f040003
+			public const int tv_new_entry_text = 2130968579;
+			
+			// aapt resource value: 0x7f04000e
+			public const int tv_type = 2130968590;
+			
+			// aapt resource value: 0x7f040017
+			public const int tv_vat = 2130968599;
+			
+			// aapt resource value: 0x7f04000d
+			public const int type_group = 2130968589;
+			
+			// aapt resource value: 0x7f040016
+			public const int vat_group = 2130968598;
 			
 			static Id()
 			{
@@ -69,6 +138,9 @@ namespace BookKeeper
 			// aapt resource value: 0x7f020000
 			public const int activity_main = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int activity_new_entry = 2130837505;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -84,6 +156,45 @@ namespace BookKeeper
 			
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
+			
+			// aapt resource value: 0x7f03000d
+			public const int btn_add_entry = 2130903053;
+			
+			// aapt resource value: 0x7f030003
+			public const int btn_create_reports = 2130903043;
+			
+			// aapt resource value: 0x7f030002
+			public const int btn_entry_list = 2130903042;
+			
+			// aapt resource value: 0x7f030001
+			public const int btn_new_entry = 2130903041;
+			
+			// aapt resource value: 0x7f030006
+			public const int rb_expense = 2130903046;
+			
+			// aapt resource value: 0x7f030005
+			public const int rb_income = 2130903045;
+			
+			// aapt resource value: 0x7f03000a
+			public const int tv_account = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int tv_amount = 2130903051;
+			
+			// aapt resource value: 0x7f030007
+			public const int tv_date = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int tv_description = 2130903048;
+			
+			// aapt resource value: 0x7f030004
+			public const int tv_new_entry_text = 2130903044;
+			
+			// aapt resource value: 0x7f030009
+			public const int tv_type = 2130903049;
+			
+			// aapt resource value: 0x7f03000c
+			public const int tv_vat = 2130903052;
 			
 			static String()
 			{

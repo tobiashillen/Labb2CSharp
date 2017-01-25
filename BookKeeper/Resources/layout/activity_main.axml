@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
-        android:text="Ny händelse"
+        android:id="@+id/btn_new_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:text="@string/btn_new_entry" />
     <Button
-        android:text="Visa alla händelser"
+        android:id="@+id/btn_entry_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2" />
+        android:text="@string/btn_entry_list" />
     <Button
-        android:text="Skapa rapporter"
+        android:id="@+id/btn_create_reports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3" />
+        android:text="@string/btn_create_reports" />
 </LinearLayout>
