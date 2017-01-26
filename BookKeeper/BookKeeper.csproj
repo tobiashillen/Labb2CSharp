@@ -53,6 +53,8 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\TaxRate.cs" />
     <Compile Include="Model\BookKeeperManager.cs" />
+    <Compile Include="EntryListActivity.cs" />
+    <Compile Include="CustomAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -63,6 +65,8 @@
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\activity_new_entry.axml" />
+    <AndroidResource Include="Resources\layout\activity_entry_list.axml" />
+    <AndroidResource Include="Resources\layout\CustomListItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

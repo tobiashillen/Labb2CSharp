@@ -3,15 +3,99 @@ namespace Model
 {
 	public class Entry
 	{
-		private bool Income { get; set; }
-		private int Date { get; set; }
-		private string Description { get; set; }
-		private int Type { get; set; }
-		private int Account { get; set; }
-		private int Amount { get; set; }
-		private double Vat { get; set; }
+		bool income;
+		DateTime date;
+		string description;
+		int amount;
+		int type;
+		int account;
+		double vat;
 
-		public Entry(bool income, int date, string description, int type, int account, int amount, double vat)
+		public bool Income
+		{
+			get
+			{
+				return income;
+			}
+			set
+			{
+				income = value;
+			}
+		}
+
+		public DateTime Date
+		{
+			get
+			{
+				return date;
+			}
+			set
+			{
+				date = value;
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set
+			{
+				description = value;
+			}
+		}
+
+		public int Type
+		{
+			get
+			{
+				return type;
+			}
+			set
+			{
+				type = value;
+			}
+		}
+
+		public int Account
+		{
+			get
+			{
+				return account;
+			}
+			set
+			{
+				account = value;
+			}
+		}
+
+		public int Amount
+		{
+			get
+			{
+				return amount;
+			}
+			set
+			{
+				amount = value;
+			}
+		}
+
+		public double Vat
+		{
+			get
+			{
+				return vat;
+			}
+			set
+			{
+				vat = value;
+			}
+		}
+
+		public Entry(bool income, DateTime date, string description, int type, int account, int amount, double vat)
 		{
 			Income = income;
 			Date = date;

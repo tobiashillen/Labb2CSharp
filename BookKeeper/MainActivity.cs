@@ -16,10 +16,19 @@ namespace BookKeeper
 			SetContentView(Resource.Layout.activity_main);
 
 			Button newEntryBtn = FindViewById<Button>(Resource.Id.btn_new_entry);
+			Button entryListBtn = FindViewById<Button>(Resource.Id.btn_entry_list);
+			//Button newEntryBtn = FindViewById<Button>(Resource.Id.btn_new_entry);
+
 
 			newEntryBtn.Click += delegate
 			{
 				Intent i = new Intent(this, typeof(NewEntryActivity));
+				StartActivity(i);
+			};
+
+			entryListBtn.Click += delegate
+			{
+				Intent i = new Intent(this, typeof(EntryListActivity));
 				StartActivity(i);
 			};
 		}

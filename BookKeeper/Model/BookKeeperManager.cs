@@ -7,7 +7,7 @@ namespace Model
 	{
 		private static BookKeeperManager instance;
 
-		private List<Entry> AllEntrys { get; set; }
+		private List<Entry> Entries { get; set; }
 		private List<Account> IncomeAccounts { get; set; }
 		private List<Account> ExpenseAccounts { get; set; }
 		private List<Account> MoneyAccounts { get; set; }
@@ -28,7 +28,7 @@ namespace Model
 		}
 		public void AddEntry(Entry e)
 		{
-			AllEntrys.Add(e);
+			Entries.Add(e);
 		}
 	}
 }
