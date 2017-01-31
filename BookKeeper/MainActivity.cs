@@ -11,9 +11,9 @@ namespace BookKeeper
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.activity_main);
+
 
 			Button newEntryBtn = FindViewById<Button>(Resource.Id.btn_new_entry);
 			Button entryListBtn = FindViewById<Button>(Resource.Id.btn_entry_list);

@@ -3,12 +3,22 @@ namespace Model
 {
 	public class Account
 	{
-		private string AccountName { get; set; }
-		private int AccountNumber { get; set; }
-		public Account(string accountName, int accountNumber)
+		public string Name { get; private set; }
+		public int Number { get; private set; }
+
+		// 1 = IncomeAccounts, 2 = ExpenseAccounts, 3 = MoneyAccounts
+		public int AccountType { get; set; }
+
+		public Account(string name, int number, int accountType)
 		{
-			AccountName = accountName;
-			AccountNumber = accountNumber;
+			Name = name;
+			Number = number;
+			AccountType = accountType;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0}, {1}", Name, Number );
 		}
 	}
 }

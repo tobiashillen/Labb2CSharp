@@ -42,11 +42,17 @@
             android:layout_marginRight="5sp"
             android:gravity="center"
             android:text="@string/tv_date" />
-        <EditText
-            android:id="@+id/ed_date"
+        <TextView
+            android:id="@+id/tv_date_result"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center" />
+        <Button
+            android:id="@+id/btn_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Välj datum" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/description_group"
@@ -148,7 +154,7 @@
             android:gravity="center"
             android:text="@string/tv_vat" />
         <Spinner
-            android:id="@+id/spinner_vat"
+            android:id="@+id/spinner_tax_rate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />

@@ -41,7 +41,7 @@ namespace BookKeeper
 				view = context.LayoutInflater.Inflate(Resource.Layout.CustomListItem, parent, false);
 
 			Entry item = this[position];
-			view.FindViewById<TextView>(Resource.Id.tv_entry_date).Text = item.Date.ToString();
+			view.FindViewById<TextView>(Resource.Id.tv_entry_date).Text = item.Date.ToString("yyyy-MM-dd");
 			view.FindViewById<TextView>(Resource.Id.tv_entry_description).Text = item.Description;
 			view.FindViewById<TextView>(Resource.Id.tv_entry_amount).Text = item.Amount.ToString() + " kr";
 			return view;
