@@ -24,7 +24,7 @@ namespace BookKeeper
 		Button dateBtn;
 		EditText descriptionET;
 		BookKeeperManager bkm;
-		static DateTime date;
+		DateTime date;
 		Spinner typeSpinner;
 		Spinner accountSpinner;
 		EditText amountET;
@@ -65,7 +65,7 @@ namespace BookKeeper
 				DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
 														 {
 															 date = time;
-															 dateTV.Text = time.ToLongDateString();
+															dateTV.Text = date.ToString("yyyy-MM-dd");
 														 });
 				frag.Show(FragmentManager, DatePickerFragment.TAG);
 			};
@@ -80,13 +80,39 @@ namespace BookKeeper
 			// Adding entry
 			addEntryBtn.Click += delegate
 			{
-				Entry e = new Entry(date, descriptionET.Text, bkm.IncomeAccounts[typeSpinner.SelectedItemPosition],
-				                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition], Int32.Parse(amountET.Text),
-									bkm.TaxRates[taxRateSpinner.SelectedItemPosition]);
-				bkm.AddEntry(e);
-			};
-		}
+				
+				if (incomeRadioBtn.Checked)
+				{
+					
+					Entry e = new Entry(date,
+										descriptionET.Text,
+					                    bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
+					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
+										Int32.Parse(amountET.Text),
+					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id);
+					bkm.AddEntry(e);
 
+				}
+				else if (expenseRadioBtn.Checked)
+				{
+					Entry e = new Entry(date,
+										descriptionET.Text,
+					                    bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
+					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
+										Int32.Parse(amountET.Text),
+					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id);
+					bkm.AddEntry(e);
+				}
+				Finish();
+			};
+
+			foreach (Account a in bkm.IncomeAccounts)
+			{
+				Console.WriteLine(a);
+
+			}
+		}
+		// Needed?
 		private void TypeSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			
@@ -102,8 +128,7 @@ namespace BookKeeper
 
 		private void setUpTaxRateSpinner(List<TaxRate> list, Spinner spinner)
 		{
-			ArrayAdapter adapter = new ArrayAdapter<TaxRate>(this, Android.Resource.Layout.SimpleSpinnerItem,
-														   list);
+			ArrayAdapter adapter = new ArrayAdapter<TaxRate>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TypeSpinnerItemSelected);
 			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = adapter;
