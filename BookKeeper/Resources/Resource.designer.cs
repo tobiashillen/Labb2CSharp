@@ -44,98 +44,104 @@ namespace BookKeeper
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040012
-			public const int account_group = 2130968594;
-			
-			// aapt resource value: 0x7f040015
-			public const int amount_group = 2130968597;
-			
-			// aapt resource value: 0x7f04001b
-			public const int btn_add_entry = 2130968603;
-			
-			// aapt resource value: 0x7f040003
-			public const int btn_create_reports = 2130968579;
-			
-			// aapt resource value: 0x7f04000b
-			public const int btn_date = 2130968587;
-			
-			// aapt resource value: 0x7f040002
-			public const int btn_entry_list = 2130968578;
-			
-			// aapt resource value: 0x7f040001
-			public const int btn_new_entry = 2130968577;
-			
-			// aapt resource value: 0x7f040008
-			public const int date_group = 2130968584;
-			
-			// aapt resource value: 0x7f04000c
-			public const int description_group = 2130968588;
+			// aapt resource value: 0x7f040014
+			public const int account_group = 2130968596;
 			
 			// aapt resource value: 0x7f040017
-			public const int ed_amount = 2130968599;
-			
-			// aapt resource value: 0x7f04000e
-			public const int ed_description = 2130968590;
+			public const int amount_group = 2130968599;
 			
 			// aapt resource value: 0x7f040000
-			public const int lv_entries = 2130968576;
-			
-			// aapt resource value: 0x7f040005
-			public const int radio_group = 2130968581;
-			
-			// aapt resource value: 0x7f040007
-			public const int rb_expense = 2130968583;
-			
-			// aapt resource value: 0x7f040006
-			public const int rb_income = 2130968582;
-			
-			// aapt resource value: 0x7f040014
-			public const int spinner_account = 2130968596;
-			
-			// aapt resource value: 0x7f04001a
-			public const int spinner_tax_rate = 2130968602;
-			
-			// aapt resource value: 0x7f040011
-			public const int spinner_type = 2130968593;
-			
-			// aapt resource value: 0x7f040013
-			public const int tv_account = 2130968595;
-			
-			// aapt resource value: 0x7f040016
-			public const int tv_amount = 2130968598;
-			
-			// aapt resource value: 0x7f040009
-			public const int tv_date = 2130968585;
-			
-			// aapt resource value: 0x7f04000a
-			public const int tv_date_result = 2130968586;
-			
-			// aapt resource value: 0x7f04000d
-			public const int tv_description = 2130968589;
-			
-			// aapt resource value: 0x7f04001e
-			public const int tv_entry_amount = 2130968606;
-			
-			// aapt resource value: 0x7f04001c
-			public const int tv_entry_date = 2130968604;
+			public const int btn_account_reports = 2130968576;
 			
 			// aapt resource value: 0x7f04001d
-			public const int tv_entry_description = 2130968605;
+			public const int btn_add_entry = 2130968605;
+			
+			// aapt resource value: 0x7f040005
+			public const int btn_create_reports = 2130968581;
+			
+			// aapt resource value: 0x7f04000d
+			public const int btn_date = 2130968589;
 			
 			// aapt resource value: 0x7f040004
-			public const int tv_new_entry_text = 2130968580;
+			public const int btn_entry_list = 2130968580;
 			
-			// aapt resource value: 0x7f040010
-			public const int tv_type = 2130968592;
+			// aapt resource value: 0x7f040003
+			public const int btn_new_entry = 2130968579;
+			
+			// aapt resource value: 0x7f040001
+			public const int btn_tax_report = 2130968577;
+			
+			// aapt resource value: 0x7f04000a
+			public const int date_group = 2130968586;
+			
+			// aapt resource value: 0x7f04000e
+			public const int description_group = 2130968590;
 			
 			// aapt resource value: 0x7f040019
-			public const int tv_vat = 2130968601;
+			public const int ed_amount = 2130968601;
 			
-			// aapt resource value: 0x7f04000f
-			public const int type_group = 2130968591;
+			// aapt resource value: 0x7f040010
+			public const int ed_description = 2130968592;
+			
+			// aapt resource value: 0x7f040002
+			public const int lv_entries = 2130968578;
+			
+			// aapt resource value: 0x7f040007
+			public const int radio_group = 2130968583;
+			
+			// aapt resource value: 0x7f040009
+			public const int rb_expense = 2130968585;
+			
+			// aapt resource value: 0x7f040008
+			public const int rb_income = 2130968584;
+			
+			// aapt resource value: 0x7f040016
+			public const int spinner_account = 2130968598;
+			
+			// aapt resource value: 0x7f04001c
+			public const int spinner_tax_rate = 2130968604;
+			
+			// aapt resource value: 0x7f040013
+			public const int spinner_type = 2130968595;
+			
+			// aapt resource value: 0x7f040015
+			public const int tv_account = 2130968597;
 			
 			// aapt resource value: 0x7f040018
-			public const int vat_group = 2130968600;
+			public const int tv_amount = 2130968600;
+			
+			// aapt resource value: 0x7f04000b
+			public const int tv_date = 2130968587;
+			
+			// aapt resource value: 0x7f04000c
+			public const int tv_date_result = 2130968588;
+			
+			// aapt resource value: 0x7f04000f
+			public const int tv_description = 2130968591;
+			
+			// aapt resource value: 0x7f040020
+			public const int tv_entry_amount = 2130968608;
+			
+			// aapt resource value: 0x7f04001e
+			public const int tv_entry_date = 2130968606;
+			
+			// aapt resource value: 0x7f04001f
+			public const int tv_entry_description = 2130968607;
+			
+			// aapt resource value: 0x7f040006
+			public const int tv_new_entry_text = 2130968582;
+			
+			// aapt resource value: 0x7f040012
+			public const int tv_type = 2130968594;
+			
+			// aapt resource value: 0x7f04001b
+			public const int tv_vat = 2130968603;
+			
+			// aapt resource value: 0x7f040011
+			public const int type_group = 2130968593;
+			
+			// aapt resource value: 0x7f04001a
+			public const int vat_group = 2130968602;
 			
 			static Id()
 			{
@@ -151,16 +157,19 @@ namespace BookKeeper
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int activity_entry_list = 2130837504;
+			public const int activity_create_reports = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int activity_main = 2130837505;
+			public const int activity_entry_list = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int activity_new_entry = 2130837506;
+			public const int activity_main = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int CustomListItem = 2130837507;
+			public const int activity_new_entry = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int CustomListItem = 2130837508;
 			
 			static Layout()
 			{
@@ -178,6 +187,9 @@ namespace BookKeeper
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
 			
+			// aapt resource value: 0x7f03000e
+			public const int btn_account_reports = 2130903054;
+			
 			// aapt resource value: 0x7f03000d
 			public const int btn_add_entry = 2130903053;
 			
@@ -189,6 +201,9 @@ namespace BookKeeper
 			
 			// aapt resource value: 0x7f030001
 			public const int btn_new_entry = 2130903041;
+			
+			// aapt resource value: 0x7f03000f
+			public const int btn_tax_report = 2130903055;
 			
 			// aapt resource value: 0x7f030006
 			public const int rb_expense = 2130903046;

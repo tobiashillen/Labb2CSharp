@@ -105,12 +105,6 @@ namespace BookKeeper
 				}
 				Finish();
 			};
-
-			foreach (Account a in bkm.IncomeAccounts)
-			{
-				Console.WriteLine(a);
-
-			}
 		}
 		// Needed?
 		private void TypeSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
