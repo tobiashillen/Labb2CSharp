@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.App;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Model;
@@ -44,6 +45,14 @@ namespace BookKeeper
 			view.FindViewById<TextView>(Resource.Id.tv_entry_date).Text = item.Date.ToString("yyyy-MM-dd");
 			view.FindViewById<TextView>(Resource.Id.tv_entry_description).Text = item.Description;
 			view.FindViewById<TextView>(Resource.Id.tv_entry_amount).Text = item.Amount.ToString() + " kr";
+			if (item.EntryType == 1)
+			{
+				view.FindViewById<TextView>(Resource.Id.tv_entry_amount).SetTextColor(Color.Green);
+			}
+			else if (item.EntryType == 2)
+			{
+				view.FindViewById<TextView>(Resource.Id.tv_entry_amount).SetTextColor(Color.Red);
+			}
 			return view;
 		}
 	}

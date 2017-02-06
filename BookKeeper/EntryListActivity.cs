@@ -34,10 +34,6 @@ namespace BookKeeper
 			ListView listView = FindViewById<ListView>(Resource.Id.lv_entries);
 			listView.ItemClick += OnListItemClick;
 			listView.Adapter = new CustomAdapter(this, bkm.Entries);
-			for (int i = 0; i < bkm.Entries.Count; i++)
-			{
-				Console.WriteLine(bkm.Entries[i]);
-			}
 		}
 
 		void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)

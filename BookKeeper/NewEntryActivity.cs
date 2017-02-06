@@ -89,20 +89,25 @@ namespace BookKeeper
 					                    bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
 					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
 										Int32.Parse(amountET.Text),
-					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id);
+					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
+					                   	1);
 					bkm.AddEntry(e);
+					Console.WriteLine(e);
 
 				}
 				else if (expenseRadioBtn.Checked)
 				{
 					Entry e = new Entry(date,
 										descriptionET.Text,
-					                    bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
+					                    bkm.ExpenseAccounts[typeSpinner.SelectedItemPosition].Number,
 					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
 										Int32.Parse(amountET.Text),
-					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id);
+					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
+					                   	2);
 					bkm.AddEntry(e);
+					Console.WriteLine(e);
 				}
+
 				Finish();
 			};
 		}

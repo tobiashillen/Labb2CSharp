@@ -119,17 +119,20 @@ namespace BookKeeper
 			// aapt resource value: 0x7f04000f
 			public const int tv_description = 2130968591;
 			
-			// aapt resource value: 0x7f040020
-			public const int tv_entry_amount = 2130968608;
-			
-			// aapt resource value: 0x7f04001e
-			public const int tv_entry_date = 2130968606;
+			// aapt resource value: 0x7f040021
+			public const int tv_entry_amount = 2130968609;
 			
 			// aapt resource value: 0x7f04001f
-			public const int tv_entry_description = 2130968607;
+			public const int tv_entry_date = 2130968607;
+			
+			// aapt resource value: 0x7f040020
+			public const int tv_entry_description = 2130968608;
 			
 			// aapt resource value: 0x7f040006
 			public const int tv_new_entry_text = 2130968582;
+			
+			// aapt resource value: 0x7f04001e
+			public const int tv_total_tax_paid = 2130968606;
 			
 			// aapt resource value: 0x7f040012
 			public const int tv_type = 2130968594;
@@ -169,7 +172,10 @@ namespace BookKeeper
 			public const int activity_new_entry = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int CustomListItem = 2130837508;
+			public const int activity_tax_report = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int CustomListItem = 2130837509;
 			
 			static Layout()
 			{

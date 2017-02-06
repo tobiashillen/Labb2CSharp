@@ -114,11 +114,37 @@ namespace Model
 				return instance;
 			}
 		}
+
 		public void AddEntry(Entry e)
 		{
 			Entries.Add(e);
 			SQLiteConnection db = new SQLiteConnection(path);
 			db.Insert(e);
+		}
+
+		public string GetTaxReport()
+		{
+			string taxReport = "";
+			double paidTaxTotal = 0;
+
+			foreach (Entry e in Entries)
+			{
+				double rate = TaxRates[e.TaxRate-1].Rate;
+				double paidTaxForEntry = (rate * e.Amount);
+
+				if (e.EntryType == 2)
+				{
+					paidTaxForEntry = paidTaxForEntry * -1;
+
+				}
+				paidTaxTotal += paidTaxForEntry;
+				taxReport += e.Date.ToShortDateString() +
+							  " | " + e.Description +
+							  " | Belopp: " + e.Amount +
+							  "kr | Moms: " + paidTaxForEntry + " kr\n";
+			}
+
+			return taxReport + "\n Total moms: " + paidTaxTotal + " kr";
 		}
 	}
 }
