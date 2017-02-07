@@ -38,8 +38,8 @@ namespace BookKeeper
 
 		void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-
-				
+			Intent i = new Intent(this, typeof(EntryActivity));
+			StartActivity(i);
 		}
 	}
 }

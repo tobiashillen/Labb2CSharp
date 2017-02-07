@@ -25,7 +25,7 @@ namespace BookKeeper
 
 			newEntryBtn.Click += delegate
 			{
-				Intent i = new Intent(this, typeof(NewEntryActivity));
+				Intent i = new Intent(this, typeof(EntryActivity));
 				StartActivity(i);
 			};
 

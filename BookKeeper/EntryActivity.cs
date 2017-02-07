@@ -15,8 +15,8 @@ using Model;
 
 namespace BookKeeper
 {
-	[Activity(Label = "NewEntryActivity")]
-	public class NewEntryActivity : Activity
+	[Activity(Label = "EntryActivity")]
+	public class EntryActivity : Activity
 	{
 		RadioButton incomeRadioBtn;
 		RadioButton expenseRadioBtn;
@@ -35,7 +35,7 @@ namespace BookKeeper
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.activity_new_entry);
+			SetContentView(Resource.Layout.activity_entry);
 
 			bkm = BookKeeperManager.Instance;
 			incomeRadioBtn = FindViewById<RadioButton>(Resource.Id.rb_income);
@@ -103,7 +103,7 @@ namespace BookKeeper
 										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
 										Int32.Parse(amountET.Text),
 										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-										   1);
+					                    1);
 					bkm.AddEntry(e);
 					Finish();
 				}
@@ -115,7 +115,7 @@ namespace BookKeeper
 										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
 										Int32.Parse(amountET.Text),
 										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-										   2);
+					                    2);
 					bkm.AddEntry(e);
 					Finish();
 				}
