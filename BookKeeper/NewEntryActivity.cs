@@ -27,6 +27,7 @@ namespace BookKeeper
 		DateTime date;
 		Spinner typeSpinner;
 		Spinner accountSpinner;
+		TextView amountExclTaxValueTV;
 		EditText amountET;
 		Spinner taxRateSpinner;
 		Button addEntryBtn;
@@ -44,6 +45,7 @@ namespace BookKeeper
 			descriptionET = FindViewById<EditText>(Resource.Id.ed_description);
 			typeSpinner = FindViewById<Spinner>(Resource.Id.spinner_type);
 			accountSpinner = FindViewById<Spinner>(Resource.Id.spinner_account);
+			amountExclTaxValueTV = FindViewById<TextView>(Resource.Id.tv_amount_excl_tax_value);
 			amountET = FindViewById<EditText>(Resource.Id.ed_amount);
 			taxRateSpinner = FindViewById<Spinner>(Resource.Id.spinner_tax_rate);
 			addEntryBtn = FindViewById<Button>(Resource.Id.btn_add_entry);
@@ -78,10 +80,20 @@ namespace BookKeeper
 			//Setting up spinner for TaxRate
 			setUpTaxRateSpinner(bkm.TaxRates, taxRateSpinner);
 
+			//Setting up amount excl tax
+			amountET.TextChanged += delegate
+			{
+				setExclTax();
+			};
+
+			taxRateSpinner.ItemSelected += delegate 
+			{
+				setExclTax();
+			};
+
 			// Adding entry
 			addEntryBtn.Click += delegate
 			{
-				
 				if (incomeRadioBtn.Checked)
 				{
 					
@@ -109,6 +121,21 @@ namespace BookKeeper
 				Finish();
 			};
 		}
+
+		void setExclTax()
+		{
+			if (amountET.Text.Equals(""))
+			{
+				amountExclTaxValueTV.Text = "-";
+			}
+			else
+			{
+				double value = Double.Parse(amountET.Text)
+									 * (1 - bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Rate);
+				amountExclTaxValueTV.Text = value.ToString();
+			}
+		}
+
 		// Needed?
 		private void TypeSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
