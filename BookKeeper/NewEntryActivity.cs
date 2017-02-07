@@ -60,6 +60,7 @@ namespace BookKeeper
 			};
 
 			// Set DateTime
+			dateTV.Text = DateTime.Now.ToString("yyyy-MM-dd");
 			dateBtn.Click += delegate 
 			{
 				DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
@@ -74,7 +75,7 @@ namespace BookKeeper
 			setUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
 			// Setting up spinner for money-account
 			setUpAccountSpinner(bkm.MoneyAccounts, accountSpinner);
-			//Setting up spinner for VAT
+			//Setting up spinner for TaxRate
 			setUpTaxRateSpinner(bkm.TaxRates, taxRateSpinner);
 
 			// Adding entry
@@ -91,9 +92,7 @@ namespace BookKeeper
 										Int32.Parse(amountET.Text),
 					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
 					                   	1);
-					bkm.AddEntry(e);
-					Console.WriteLine(e);
-
+										bkm.AddEntry(e);
 				}
 				else if (expenseRadioBtn.Checked)
 				{
@@ -104,8 +103,7 @@ namespace BookKeeper
 										Int32.Parse(amountET.Text),
 					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
 					                   	2);
-					bkm.AddEntry(e);
-					Console.WriteLine(e);
+										bkm.AddEntry(e);
 				}
 
 				Finish();
@@ -138,10 +136,7 @@ namespace BookKeeper
 	public class DatePickerFragment : DialogFragment,
 									  DatePickerDialog.IOnDateSetListener
 	{
-		// TAG can be any string of your choice.
-		public static readonly string TAG = "X:" + typeof(DatePickerFragment).Name.ToUpper();
-
-		// Initialize this value to prevent NullReferenceExceptions.
+		public static readonly string TAG = "TAG:" + typeof(DatePickerFragment).Name.ToUpper();
 		Action<DateTime> _dateSelectedHandler = delegate { };
 
 		public static DatePickerFragment NewInstance(Action<DateTime> onDateSelected)
@@ -164,7 +159,6 @@ namespace BookKeeper
 
 		public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
 		{
-			// Note: monthOfYear is a value between 0 and 11, not 1 and 12!
 			DateTime selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
 			_dateSelectedHandler(selectedDate);
 		}
