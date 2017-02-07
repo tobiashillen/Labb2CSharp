@@ -61,7 +61,7 @@ namespace BookKeeper
 				setUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
 			};
 
-			// Set DateTime
+			// Setting up DateTime
 			dateTV.Text = DateTime.Now.ToString("yyyy-MM-dd");
 			dateBtn.Click += delegate 
 			{
@@ -94,35 +94,39 @@ namespace BookKeeper
 			// Adding entry
 			addEntryBtn.Click += delegate
 			{
-				if (incomeRadioBtn.Checked)
+				if (incomeRadioBtn.Checked && !descriptionET.Text.Equals("") && !amountET.Text.Equals(""))
 				{
-					
-					Entry e = new Entry(date,
-										descriptionET.Text,
-					                    bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
-					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
-										Int32.Parse(amountET.Text),
-					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-					                   	1);
-										bkm.AddEntry(e);
-				}
-				else if (expenseRadioBtn.Checked)
-				{
-					Entry e = new Entry(date,
-										descriptionET.Text,
-					                    bkm.ExpenseAccounts[typeSpinner.SelectedItemPosition].Number,
-					                    bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
-										Int32.Parse(amountET.Text),
-					                    bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-					                   	2);
-										bkm.AddEntry(e);
-				}
 
-				Finish();
+					Entry e = new Entry(date,
+										descriptionET.Text,
+										bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
+										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
+										Int32.Parse(amountET.Text),
+										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
+										   1);
+					bkm.AddEntry(e);
+					Finish();
+				}
+				else if (expenseRadioBtn.Checked && !descriptionET.Equals("") && !amountET.Text.Equals(""))
+				{
+					Entry e = new Entry(date,
+										descriptionET.Text,
+										bkm.ExpenseAccounts[typeSpinner.SelectedItemPosition].Number,
+										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
+										Int32.Parse(amountET.Text),
+										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
+										   2);
+					bkm.AddEntry(e);
+					Finish();
+				}
+				else
+				{
+					Toast.MakeText(this, "Var god fyll i alla fält.", ToastLength.Short).Show();
+				}
 			};
 		}
 
-		void setExclTax()
+		private void setExclTax()
 		{
 			if (amountET.Text.Equals(""))
 			{
