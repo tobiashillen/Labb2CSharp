@@ -17,7 +17,6 @@ namespace BookKeeper
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_main);
 
-
 			newEntryBtn = FindViewById<Button>(Resource.Id.btn_new_entry);
 			entryListBtn = FindViewById<Button>(Resource.Id.btn_entry_list);
 			createReportsBtn = FindViewById<Button>(Resource.Id.btn_create_reports);

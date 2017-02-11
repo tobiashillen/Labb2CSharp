@@ -26,7 +26,7 @@ namespace BookKeeper
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_entry_list);
-
+			SetTitle(Resource.String.title_entry_list_activity);
 			bkm = BookKeeperManager.Instance;
 
 			// Initalizing ListView with custom adapter.

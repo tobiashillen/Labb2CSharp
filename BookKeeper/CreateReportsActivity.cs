@@ -22,7 +22,7 @@ namespace BookKeeper
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_create_reports);
-
+			SetTitle(Resource.String.title_create_reports_activity);
 			accountReportsBtn = FindViewById<Button>(Resource.Id.btn_account_reports);
 			taxReportBtn = FindViewById<Button>(Resource.Id.btn_tax_report);
 

@@ -20,5 +20,12 @@
 	<string name="btn_account_reports">Rapport över konton</string>
 	<string name="btn_tax_report">Momsrapport</string>
 
+	<string name="title_new_entry_activity">Ny händelse</string>
+	<string name="title_edit_entry_activity">Ändra i händelse</string>
+	<string name="title_entry_list_activity">Alla händelser</string>
+	<string name="title_create_reports_activity">Rapporter</string>
+	<string name="title_accounts_report_activity">Kontorapport</string>
+	<string name="title_tax_report_activity">Momsrapport</string>
+
 	
 </resources>

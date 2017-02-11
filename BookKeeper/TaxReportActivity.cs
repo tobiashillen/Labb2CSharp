@@ -25,7 +25,7 @@ namespace BookKeeper
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_tax_report);
-
+			SetTitle(Resource.String.title_tax_report_activity);
 			totalTaxPaidTV = FindViewById<TextView>(Resource.Id.tv_total_tax_paid);
 			bkm = BookKeeperManager.Instance;
 			totalTaxPaidTV.Text = bkm.GetTaxReport();

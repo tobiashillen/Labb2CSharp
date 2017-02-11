@@ -47,8 +47,13 @@ namespace BookKeeper
 			isEditMode = Intent.GetBooleanExtra("EditMode", false);
 			if (isEditMode)
 			{
+				SetTitle(Resource.String.title_edit_entry_activity);
 				editEntryId = Intent.GetIntExtra("Entry", -1);
 				editEntry = bkm.Entries[editEntryId];
+			}
+			else
+			{
+				SetTitle(Resource.String.title_new_entry_activity);
 			}
 
 			incomeRadioBtn = FindViewById<RadioButton>(Resource.Id.rb_income);
