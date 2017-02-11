@@ -120,6 +120,12 @@ namespace Model
 			db.Insert(e);
 		}
 
+		public void EditEntry(Entry e)
+		{
+			SQLiteConnection db = new SQLiteConnection(path);
+			db.Update(e);
+		}
+
 		public string GetTaxReport()
 		{
 			string taxReport = "";

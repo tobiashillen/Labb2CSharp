@@ -20,25 +20,28 @@ namespace BookKeeper
 	{
 
 		BookKeeperManager bkm;
+		ListView listView;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_entry_list);
 
-			//TODO Do we need the OnListItemClick? 
-
 			bkm = BookKeeperManager.Instance;
 
 			// Initalizing ListView with custom adapter.
-			ListView listView = FindViewById<ListView>(Resource.Id.lv_entries);
+			listView = FindViewById<ListView>(Resource.Id.lv_entries);
 			listView.ItemClick += OnListItemClick;
+
 			listView.Adapter = new CustomAdapter(this, bkm.Entries);
 		}
 
 		void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			Intent i = new Intent(this, typeof(EntryActivity));
+			i.PutExtra("EditMode", true);
+			i.PutExtra("Entry", e.Position);
+			Console.WriteLine(bkm.Entries[e.Position]);
 			StartActivity(i);
 		}
 	}

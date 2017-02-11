@@ -8,7 +8,6 @@ namespace Model
 		[PrimaryKey]
 		public int Number { get; private set; }
 		public string Name { get; private set; }
-
 		// 1 = IncomeAccounts, 2 = ExpenseAccounts, 3 = MoneyAccounts
 		public int AccountType { get; set; }
 

@@ -6,7 +6,7 @@ namespace Model
 	public class Entry
 	{
 		[PrimaryKey, AutoIncrement, Column("_id")]
-		int Id { get; set; }
+		public int Id { get; set; }
 		public DateTime Date { get; set; }
 		public string Description { get; set; }
 		public int TypeAccount { get; set; }
