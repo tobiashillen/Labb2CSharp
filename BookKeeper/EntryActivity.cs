@@ -229,19 +229,19 @@ namespace BookKeeper
 			{
 				incomeRadioBtn.Checked = true;
 				setUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
-				setUpEditAcountSpinnerPosition(bkm.IncomeAccounts, editEntry.TypeAccount, typeSpinner);
+				setSelectionForAccountSpinner(bkm.IncomeAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 			else if (editEntry.EntryType == 2)
 			{
 				expenseRadioBtn.Checked = true;
 				setUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
-				setUpEditAcountSpinnerPosition(bkm.ExpenseAccounts, editEntry.TypeAccount, typeSpinner);
+				setSelectionForAccountSpinner(bkm.ExpenseAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 
 			date = editEntry.Date;
 			dateTV.Text = date.ToString("yyyy-MM-dd");
 			descriptionET.Text = editEntry.Description;
-			setUpEditAcountSpinnerPosition(bkm.MoneyAccounts, editEntry.MoneyAccount, accountSpinner);
+			setSelectionForAccountSpinner(bkm.MoneyAccounts, editEntry.MoneyAccount, accountSpinner);
 			amountET.Text = editEntry.Amount.ToString();
 			taxRateSpinner.SetSelection(editEntry.TaxRate-1);
 			setExclTax();
@@ -249,7 +249,7 @@ namespace BookKeeper
 			addEntryBtn.Text = "Ändra händelse";
 		}
 
-		private void setUpEditAcountSpinnerPosition(List<Account> list, int accountNumber, Spinner spinner)
+		private void setSelectionForAccountSpinner(List<Account> list, int accountNumber, Spinner spinner)
 		{
 			int listId = -1;
 			for (int i = 0; i < list.Count; i++)
