@@ -63,6 +63,7 @@
     <Compile Include="CustomAdapter.cs" />
     <Compile Include="CreateReportsActivity.cs" />
     <Compile Include="TaxReportActivity.cs" />
+    <Compile Include="AccountsReportActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -78,6 +79,7 @@
     <AndroidResource Include="Resources\layout\CustomListItem.axml" />
     <AndroidResource Include="Resources\layout\activity_create_reports.axml" />
     <AndroidResource Include="Resources\layout\activity_tax_report.axml" />
+    <AndroidResource Include="Resources\layout\activity_accounts_report.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\mipmap-hdpi\" />

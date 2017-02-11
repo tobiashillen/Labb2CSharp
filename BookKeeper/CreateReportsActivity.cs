@@ -28,7 +28,9 @@ namespace BookKeeper
 
 			accountReportsBtn.Click += delegate 
 			{
-				
+				Intent i = new Intent(this, typeof(AccountsReportActivity));
+				StartActivity(i);
+
 			};
 
 			taxReportBtn.Click += delegate 
