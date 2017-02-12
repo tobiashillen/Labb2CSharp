@@ -73,6 +73,7 @@ namespace BookKeeper
 			}
 
 			//--- Delegates for all actions in view ---
+
 			incomeRadioBtn.Click += delegate
 			{
 				SetUpSpinner(bkm.IncomeAccounts, typeSpinner);
@@ -209,8 +210,7 @@ namespace BookKeeper
 			amountET.Text = editEntry.Amount.ToString();
 			taxRateSpinner.SetSelection(editEntry.TaxRate-1);
 			SetExclTax();
-
-			addEntryBtn.Text = "Spara ändringar";
+			addEntryBtn.Text = GetString(Resource.String.btn_edit_entry);
 		}
 
 		//Sets spinner value according to chosen account number.

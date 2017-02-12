@@ -16,7 +16,7 @@ namespace Model
 			Rate = rate;
 		}
 
-		// Overrides ToString in procent format.
+		// Overrides ToString-method in %-format.
 		public override string ToString()
 		{
 			return string.Format("{0} %", Rate*100);

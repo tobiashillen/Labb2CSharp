@@ -8,8 +8,8 @@ namespace Model
 	public class BookKeeperManager
 	{
 		static BookKeeperManager instance;
-		static string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + @"\database.db";
-
+		static string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) 
+		                           + @"\database.db";
 
 		public List<Entry> Entries
 		{

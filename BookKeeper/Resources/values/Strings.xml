@@ -16,6 +16,7 @@
 	<string name="tv_amount">Totalt belopp (inkl. moms):</string>
 	<string name="tv_vat">Moms:</string>
 	<string name="btn_add_entry">Lägg till händelse</string>
+	<string name="btn_edit_entry">Spara ändringar</string>
 
 	<string name="btn_account_reports">Rapport över konton</string>
 	<string name="btn_tax_report">Momsrapport</string>

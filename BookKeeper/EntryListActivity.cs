@@ -28,11 +28,13 @@ namespace BookKeeper
 			SetContentView(Resource.Layout.activity_entry_list);
 			SetTitle(Resource.String.title_entry_list_activity);
 			bkm = BookKeeperManager.Instance;
-
-			// Initalizing ListView with custom adapter.
 			listView = FindViewById<ListView>(Resource.Id.lv_entries);
 			listView.ItemClick += OnListItemClick;
-
+			listView.Adapter = new CustomAdapter(this, bkm.Entries);
+		}
+		protected override void OnResume()
+		{
+			base.OnResume();
 			listView.Adapter = new CustomAdapter(this, bkm.Entries);
 		}
 

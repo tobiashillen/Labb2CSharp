@@ -208,8 +208,8 @@ namespace BookKeeper
 			// aapt resource value: 0x7f030000
 			public const int app_name = 2130903040;
 			
-			// aapt resource value: 0x7f03000f
-			public const int btn_account_reports = 2130903055;
+			// aapt resource value: 0x7f030010
+			public const int btn_account_reports = 2130903056;
 			
 			// aapt resource value: 0x7f03000e
 			public const int btn_add_entry = 2130903054;
@@ -217,14 +217,17 @@ namespace BookKeeper
 			// aapt resource value: 0x7f030003
 			public const int btn_create_reports = 2130903043;
 			
+			// aapt resource value: 0x7f03000f
+			public const int btn_edit_entry = 2130903055;
+			
 			// aapt resource value: 0x7f030002
 			public const int btn_entry_list = 2130903042;
 			
 			// aapt resource value: 0x7f030001
 			public const int btn_new_entry = 2130903041;
 			
-			// aapt resource value: 0x7f030010
-			public const int btn_tax_report = 2130903056;
+			// aapt resource value: 0x7f030011
+			public const int btn_tax_report = 2130903057;
 			
 			// aapt resource value: 0x7f030006
 			public const int rb_expense = 2130903046;
@@ -232,23 +235,23 @@ namespace BookKeeper
 			// aapt resource value: 0x7f030005
 			public const int rb_income = 2130903045;
 			
+			// aapt resource value: 0x7f030016
+			public const int title_accounts_report_activity = 2130903062;
+			
 			// aapt resource value: 0x7f030015
-			public const int title_accounts_report_activity = 2130903061;
-			
-			// aapt resource value: 0x7f030014
-			public const int title_create_reports_activity = 2130903060;
-			
-			// aapt resource value: 0x7f030012
-			public const int title_edit_entry_activity = 2130903058;
+			public const int title_create_reports_activity = 2130903061;
 			
 			// aapt resource value: 0x7f030013
-			public const int title_entry_list_activity = 2130903059;
+			public const int title_edit_entry_activity = 2130903059;
 			
-			// aapt resource value: 0x7f030011
-			public const int title_new_entry_activity = 2130903057;
+			// aapt resource value: 0x7f030014
+			public const int title_entry_list_activity = 2130903060;
 			
-			// aapt resource value: 0x7f030016
-			public const int title_tax_report_activity = 2130903062;
+			// aapt resource value: 0x7f030012
+			public const int title_new_entry_activity = 2130903058;
+			
+			// aapt resource value: 0x7f030017
+			public const int title_tax_report_activity = 2130903063;
 			
 			// aapt resource value: 0x7f03000a
 			public const int tv_account = 2130903050;
