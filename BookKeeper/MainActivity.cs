@@ -21,7 +21,6 @@ namespace BookKeeper
 			entryListBtn = FindViewById<Button>(Resource.Id.btn_entry_list);
 			createReportsBtn = FindViewById<Button>(Resource.Id.btn_create_reports);
 
-
 			newEntryBtn.Click += delegate
 			{
 				Intent i = new Intent(this, typeof(EntryActivity));

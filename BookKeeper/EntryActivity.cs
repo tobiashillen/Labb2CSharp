@@ -34,27 +34,12 @@ namespace BookKeeper
 
 		bool isEditMode;
 		Entry editEntry;
-		int editEntryId;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_entry);
-
 			bkm = BookKeeperManager.Instance;
-
-
-			isEditMode = Intent.GetBooleanExtra("EditMode", false);
-			if (isEditMode)
-			{
-				SetTitle(Resource.String.title_edit_entry_activity);
-				editEntryId = Intent.GetIntExtra("Entry", -1);
-				editEntry = bkm.Entries[editEntryId];
-			}
-			else
-			{
-				SetTitle(Resource.String.title_new_entry_activity);
-			}
 
 			incomeRadioBtn = FindViewById<RadioButton>(Resource.Id.rb_income);
 			expenseRadioBtn = FindViewById<RadioButton>(Resource.Id.rb_expense);
@@ -68,20 +53,36 @@ namespace BookKeeper
 			taxRateSpinner = FindViewById<Spinner>(Resource.Id.spinner_tax_rate);
 			addEntryBtn = FindViewById<Button>(Resource.Id.btn_add_entry);
 
+			SetUpSpinner(bkm.IncomeAccounts, typeSpinner);
+			SetUpSpinner(bkm.MoneyAccounts, accountSpinner);
+			SetUpSpinner(bkm.TaxRates, taxRateSpinner);
 
-			// Setting up RadioGroup
+			isEditMode = Intent.GetBooleanExtra("EditMode", false);
+
+			if (isEditMode)
+			{
+				SetTitle(Resource.String.title_edit_entry_activity);
+				editEntry = bkm.Entries[Intent.GetIntExtra("Entry", -1)];
+				SetUpEditModeView();
+			}
+			else
+			{
+				SetTitle(Resource.String.title_new_entry_activity);
+				date = DateTime.Now;
+				dateTV.Text = date.ToString("yyyy-MM-dd");
+			}
+
+			//--- Delegates for all actions in view ---
 			incomeRadioBtn.Click += delegate
 			{
-				SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
-			};
-			expenseRadioBtn.Click += delegate
-			{
-				SetUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
+				SetUpSpinner(bkm.IncomeAccounts, typeSpinner);
 			};
 
-			// Setting up DateTime
-			date = DateTime.Now;
-			dateTV.Text = date.ToString("yyyy-MM-dd");
+			expenseRadioBtn.Click += delegate
+			{
+				SetUpSpinner(bkm.ExpenseAccounts, typeSpinner);
+			};
+
 			dateBtn.Click += delegate 
 			{
 				DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
@@ -92,14 +93,6 @@ namespace BookKeeper
 				frag.Show(FragmentManager, DatePickerFragment.TAG);
 			};
 
-			// Setting spinner for type-accounts
-			SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
-			// Setting up spinner for money-account
-			SetUpAccountSpinner(bkm.MoneyAccounts, accountSpinner);
-			//Setting up spinner for TaxRate
-			SetUpTaxRateSpinner(bkm.TaxRates, taxRateSpinner);
-
-			//Setting up amount excl tax
 			amountET.TextChanged += delegate
 			{
 				SetExclTax();
@@ -110,70 +103,31 @@ namespace BookKeeper
 				SetExclTax();
 			};
 
-			// Adding entry
 			addEntryBtn.Click += delegate
 			{
-				if (incomeRadioBtn.Checked
-					&& !descriptionET.Text.Equals("")
-					&& !amountET.Text.Equals("")
-					&& !isEditMode)
+				if (!descriptionET.Text.Equals("")
+					&& !amountET.Text.Equals(""))
 				{
-
-					Entry e = new Entry(date,
-										descriptionET.Text,
-										bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number,
-										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
-										Int32.Parse(amountET.Text),
-										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-										1);
-					bkm.AddEntry(e);
-					Finish();
-				}
-				else if (expenseRadioBtn.Checked
-						 && !descriptionET.Equals("")
-						 && !amountET.Text.Equals("")
-						 && !isEditMode)
-				{
-					Entry e = new Entry(date,
-										descriptionET.Text,
-										bkm.ExpenseAccounts[typeSpinner.SelectedItemPosition].Number,
-										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
-										Int32.Parse(amountET.Text),
-										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
-										2);
-					bkm.AddEntry(e);
-					Finish();
-				}
-				else if (incomeRadioBtn.Checked
-						 && !descriptionET.Equals("")
-						 && !amountET.Text.Equals("")
-						 && isEditMode)
-				{
-					editEntry.Date = date;
-					editEntry.Description = descriptionET.Text;
-					editEntry.TypeAccount = bkm.IncomeAccounts[typeSpinner.SelectedItemPosition].Number;
-					editEntry.MoneyAccount = bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number;
-					editEntry.Amount = Int32.Parse(amountET.Text);
-					editEntry.TaxRate = bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id;
-					editEntry.EntryType = 1;
-
-					bkm.EditEntry(editEntry);
-					Finish();
-				}
-				else if (expenseRadioBtn.Checked 
-				         && !descriptionET.Equals("") 
-				         && !amountET.Text.Equals("") 
-				         && isEditMode)
-				{
-					editEntry.Date = date;
-					editEntry.Description = descriptionET.Text;
-					editEntry.TypeAccount = bkm.ExpenseAccounts[typeSpinner.SelectedItemPosition].Number;
-					editEntry.MoneyAccount = bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number;
-					editEntry.Amount = Int32.Parse(amountET.Text);
-					editEntry.TaxRate = bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id;
-					editEntry.EntryType = 2;
-
-					bkm.EditEntry(editEntry);
+					if (incomeRadioBtn.Checked
+					   && !isEditMode)
+					{
+						AddNewEntry(bkm.IncomeAccounts, 1);
+					}
+					else if (expenseRadioBtn.Checked
+							 && !isEditMode)
+					{
+						AddNewEntry(bkm.ExpenseAccounts, 2);
+					}
+					else if (incomeRadioBtn.Checked
+							 && isEditMode)
+					{
+						EditOldEntry(bkm.IncomeAccounts, 1);
+					}
+					else if (expenseRadioBtn.Checked
+							 && isEditMode)
+					{
+						EditOldEntry(bkm.ExpenseAccounts, 2);
+					}
 					Finish();
 				}
 				else
@@ -181,15 +135,35 @@ namespace BookKeeper
 					Toast.MakeText(this, "Var god fyll i alla fält.", ToastLength.Short).Show();
 				}
 			};
-
-			//Setting up edit mode if true
-			if (isEditMode)
-			{
-				SetUpEditModeView();
-			}
-
 		}
 
+		//Adds new entry via BookKeeperManager.
+		private void AddNewEntry(List<Account> typeAcount, int entryType)
+		{
+			bkm.AddEntry(new Entry(date,
+										descriptionET.Text,
+			                       		typeAcount[typeSpinner.SelectedItemPosition].Number,
+										bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number,
+										Int32.Parse(amountET.Text),
+										bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id,
+			                       		entryType));
+		}
+
+		//Edits old entry via BookKeeperManager.
+		private void EditOldEntry(List<Account> typeAccount, int entryType)
+		{
+			editEntry.Date = date;
+			editEntry.Description = descriptionET.Text;
+			editEntry.TypeAccount = typeAccount[typeSpinner.SelectedItemPosition].Number;
+			editEntry.MoneyAccount = bkm.MoneyAccounts[accountSpinner.SelectedItemPosition].Number;
+			editEntry.Amount = Int32.Parse(amountET.Text);
+			editEntry.TaxRate = bkm.TaxRates[taxRateSpinner.SelectedItemPosition].Id;
+			editEntry.EntryType = entryType;
+
+			bkm.EditEntry(editEntry);
+		}
+
+		//Sets the tax excluding amount according to incl. amount and taxrate. 
 		private void SetExclTax()
 		{
 			if (amountET.Text.Equals(""))
@@ -204,42 +178,27 @@ namespace BookKeeper
 			}
 		}
 
-		// Needed?
-		private void TypeSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		//Populates chosen spinner with chosen generic list<T>.
+		private void SetUpSpinner<T>(List<T> list, Spinner spinner)
 		{
-			
-		}
-
-		private void SetUpAccountSpinner(List<Account> list, Spinner spinner)
-		{
-			ArrayAdapter adapter = new ArrayAdapter<Account>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
-			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TypeSpinnerItemSelected);
+			ArrayAdapter adapter = new ArrayAdapter<T>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
 			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = adapter;
 		}
 
-		private void SetUpTaxRateSpinner(List<TaxRate> list, Spinner spinner)
-		{
-			ArrayAdapter adapter = new ArrayAdapter<TaxRate>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
-			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TypeSpinnerItemSelected);
-			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			spinner.Adapter = adapter;
-		}
-
-		//Fills all fields with info from current Entry and changes button to edit mode.
+		//Changes all view objects according to EditEntry.
 		private void SetUpEditModeView()
 		{
-
 			if (editEntry.EntryType == 1)
 			{
 				incomeRadioBtn.Checked = true;
-				SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
+				SetUpSpinner(bkm.IncomeAccounts, typeSpinner);
 				SetSelectionForAccountSpinner(bkm.IncomeAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 			else if (editEntry.EntryType == 2)
 			{
 				expenseRadioBtn.Checked = true;
-				SetUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
+				SetUpSpinner(bkm.ExpenseAccounts, typeSpinner);
 				SetSelectionForAccountSpinner(bkm.ExpenseAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 
@@ -251,15 +210,16 @@ namespace BookKeeper
 			taxRateSpinner.SetSelection(editEntry.TaxRate-1);
 			SetExclTax();
 
-			addEntryBtn.Text = "Ändra händelse";
+			addEntryBtn.Text = "Spara ändringar";
 		}
 
-		private void SetSelectionForAccountSpinner(List<Account> list, int accountNumber, Spinner spinner)
+		//Sets spinner value according to chosen account number.
+		private void SetSelectionForAccountSpinner(List<Account> accountList, int accountNumber, Spinner spinner)
 		{
 			int listId = -1;
-			for (int i = 0; i < list.Count; i++)
+			for (int i = 0; i < accountList.Count; i++)
 			{
-				if (list[i].Number == accountNumber)
+				if (accountList[i].Number == accountNumber)
 				{
 					listId = i;
 				}
@@ -273,15 +233,7 @@ namespace BookKeeper
 	}
 
 
-
-
-
-
-
-
-
-
-	//DatePickerFragment-Class
+	//DatePickerFragment-Class 
 	public class DatePickerFragment : DialogFragment,
 									  DatePickerDialog.IOnDateSetListener
 	{

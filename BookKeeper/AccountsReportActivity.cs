@@ -35,56 +35,76 @@ namespace BookKeeper
 
 		}
 
+		//Generates a list of strings containing information about the type account passed to this method.
 		private List<string> GetTypeAccountReport(List<Account> list)
 		{
 			List<string> typeAccountReportList = new List<string>();
+
+			//Iterates list of type accounts
 			for (int i = 0; i < list.Count; i++)
 			{
+				//Declare an empty string representing current money account.
 				string report = "";
-				var currentAccountEntriesAmount = bkm.Entries.
-				                                     Where(e => e.TypeAccount == list[i].Number).
-													 Select(e => e.Amount);
 
-				report += list[i].Name
-						 + "("
-						 + list[i].Number
-						 + ") (Totalt: "
-						 + currentAccountEntriesAmount.Sum()
-						 + " kr)\n";
+				//Gets total amount for current account.
+				int total = bkm.Entries.
+				                      Where(e => e.TypeAccount == list[i].Number).
+				               Select(e => e.Amount).Sum();
+
+				//Adds all necessary information about the current account to the string.
+				report += String.Format("{0} ({1}) (Totalt: {2} kr)\n", 
+				                        list[i].Name, list[i].Number, total);
+
+				//Gets all entries connected to the current acount.
 				var currentAccountEntries = bkm.Entries.Where(e => e.TypeAccount == list[i].Number);
 
+
+				//Iterates entries, adding all necessary information about that entry to the report string.
 				foreach (Entry e in currentAccountEntries)
 				{
 					report += e.Date.ToString("yyyy-MM-dd") + " - " + e.Description + ", " + e.Amount + " kr. \n";
 				}
+
+				//Adding string with all account information and transactions of the current account to return list.
 				typeAccountReportList.Add(report);
 			}
 			return typeAccountReportList;
 		}
 
+		//Generates a list of strings containing information about all money account.
 		private List<string> GetMoneyAccountReport()
 		{
 			List<string> moneyAccountReportList = new List<string>();
+
+			//Iterates all money accounts to compose a string per account.
 			for (int i = 0; i < bkm.MoneyAccounts.Count; i++)
 			{
+				//Declare an empty string representing current money account.
 				string report = "";
-				var currentAccountEntriesPositiveAmount = bkm.Entries.
-													 Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number
-														   && e.EntryType == 1).
-													 Select(e => e.Amount);
-				var currentAccountEntriesNegativeAmount = bkm.Entries.
-													 Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number
-														   && e.EntryType == 2).
-													 Select(e => e.Amount);
 
-				report += bkm.MoneyAccounts[i].Name
-						 + "("
-						 + bkm.MoneyAccounts[i].Number
-						 + ") (Totalt: "
-						 + (currentAccountEntriesPositiveAmount.Sum() - currentAccountEntriesNegativeAmount.Sum())
-						 + " kr)\n";
+				//Gets the total amount from all income transactions connected to current money account.
+				int totalIncomeAmount = bkm.Entries.
+									  Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number
+										  && e.EntryType == 1).
+									  Select(e => e.Amount).Sum();
+				
+				//Gets the total amount from all expense transactions connected to current money account. 
+				//Result in a negative value.
+				int totalExpenseAmount = bkm.Entries.
+											Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number
+												  && e.EntryType == 2).
+											Select(e => e.Amount * -1).Sum();
+				
+				//Adds all necessary information about the current account to the string.
+				report += String.Format("{0} ({1}) (Totalt: {2} kr)\n",
+										bkm.MoneyAccounts[i].Name, bkm.MoneyAccounts[i].Number,
+										(totalIncomeAmount + totalExpenseAmount));
+
+				//Gets all entries connected to the current acount.
 				var currentAccountEntries = bkm.Entries.Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number);
 
+				//Iterates entries, setting positive or negative value according to EntryType 
+				//and adding all necessary information about that entry to the report string.
 				foreach (Entry e in currentAccountEntries)
 				{
 					int amount = 0;
@@ -96,11 +116,14 @@ namespace BookKeeper
 					{
 						amount = e.Amount * -1;
 					}
-					report += e.Date.ToString("yyyy-MM-dd") + " - " + e.Description + ", " + amount + " kr. \n";
+					report += String.Format("{0} - {1}, {2} kr. \n",
+											e.Date.ToString("yyyy-MM-dd"), e.Description, amount);
 				}
+
+				//Adding string with all account information and transactions of the current account to return list.
 				moneyAccountReportList.Add(report);
-				report = "";
 			}
+
 			return moneyAccountReportList;
 		}
 	}
