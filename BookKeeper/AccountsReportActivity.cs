@@ -27,65 +27,47 @@ namespace BookKeeper
 			SetTitle(Resource.String.title_accounts_report_activity);
 			bkm = BookKeeperManager.Instance;
 			accountsReportLV = FindViewById<ListView>(Resource.Id.lv_accountsReport);
-			List<string> reportList = getReport();
+
+			List<string> reportList = GetTypeAccountReport(bkm.IncomeAccounts);
+			reportList.AddRange(GetTypeAccountReport(bkm.ExpenseAccounts));
+			reportList.AddRange(GetMoneyAccountReport());
 			accountsReportLV.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, reportList);
+
 		}
 
-		private List<string> getReport()
+		private List<string> GetTypeAccountReport(List<Account> list)
 		{
-			List<string> reportList = new List<string>();
-			string report = "";
-
-			//Incomeaccounts
-			for (int i = 0; i < bkm.IncomeAccounts.Count; i++)
+			List<string> typeAccountReportList = new List<string>();
+			for (int i = 0; i < list.Count; i++)
 			{
+				string report = "";
 				var currentAccountEntriesAmount = bkm.Entries.
-													 Where(e => e.TypeAccount == bkm.IncomeAccounts[i].Number).
+				                                     Where(e => e.TypeAccount == list[i].Number).
 													 Select(e => e.Amount);
 
-				report +=  bkm.IncomeAccounts[i].Name
+				report += list[i].Name
 						 + "("
-						 + bkm.IncomeAccounts[i].Number
+						 + list[i].Number
 						 + ") (Totalt: "
 						 + currentAccountEntriesAmount.Sum()
 						 + " kr)\n";
-				var currentAccountEntries = bkm.Entries.Where(e => e.TypeAccount == bkm.IncomeAccounts[i].Number);
+				var currentAccountEntries = bkm.Entries.Where(e => e.TypeAccount == list[i].Number);
 
 				foreach (Entry e in currentAccountEntries)
 				{
 					report += e.Date.ToString("yyyy-MM-dd") + " - " + e.Description + ", " + e.Amount + " kr. \n";
 				}
-				reportList.Add(report);
-				report = "";
+				typeAccountReportList.Add(report);
 			}
+			return typeAccountReportList;
+		}
 
-
-			//Expenseaccount
-			for (int i = 0; i < bkm.ExpenseAccounts.Count; i++)
-			{
-				var currentAccountEntriesAmount = bkm.Entries.
-													 Where(e => e.TypeAccount == bkm.ExpenseAccounts[i].Number).
-													 Select(e => e.Amount);
-
-				report +=  bkm.ExpenseAccounts[i].Name
-						 + "("
-						 + bkm.ExpenseAccounts[i].Number
-						 + ") (Totalt: "
-						 + currentAccountEntriesAmount.Sum() * -1
-						 + " kr)\n";
-				var currentAccountEntries = bkm.Entries.Where(e => e.TypeAccount == bkm.ExpenseAccounts[i].Number);
-
-				foreach (Entry e in currentAccountEntries)
-				{
-					report += e.Date.ToString("yyyy-MM-dd") + " - " + e.Description + ", " + e.Amount * -1 + " kr. \n";
-				}
-				reportList.Add(report);
-				report = "";
-			}
-
-			//MoneyAccounts
+		private List<string> GetMoneyAccountReport()
+		{
+			List<string> moneyAccountReportList = new List<string>();
 			for (int i = 0; i < bkm.MoneyAccounts.Count; i++)
 			{
+				string report = "";
 				var currentAccountEntriesPositiveAmount = bkm.Entries.
 													 Where(e => e.MoneyAccount == bkm.MoneyAccounts[i].Number
 														   && e.EntryType == 1).
@@ -95,7 +77,7 @@ namespace BookKeeper
 														   && e.EntryType == 2).
 													 Select(e => e.Amount);
 
-				report +=  bkm.MoneyAccounts[i].Name
+				report += bkm.MoneyAccounts[i].Name
 						 + "("
 						 + bkm.MoneyAccounts[i].Number
 						 + ") (Totalt: "
@@ -116,10 +98,10 @@ namespace BookKeeper
 					}
 					report += e.Date.ToString("yyyy-MM-dd") + " - " + e.Description + ", " + amount + " kr. \n";
 				}
-				reportList.Add(report);
+				moneyAccountReportList.Add(report);
 				report = "";
 			}
-			return reportList;
+			return moneyAccountReportList;
 		}
 	}
 }

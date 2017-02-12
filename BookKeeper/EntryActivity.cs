@@ -72,11 +72,11 @@ namespace BookKeeper
 			// Setting up RadioGroup
 			incomeRadioBtn.Click += delegate
 			{
-				setUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
+				SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
 			};
 			expenseRadioBtn.Click += delegate
 			{
-				setUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
+				SetUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
 			};
 
 			// Setting up DateTime
@@ -93,21 +93,21 @@ namespace BookKeeper
 			};
 
 			// Setting spinner for type-accounts
-			setUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
+			SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
 			// Setting up spinner for money-account
-			setUpAccountSpinner(bkm.MoneyAccounts, accountSpinner);
+			SetUpAccountSpinner(bkm.MoneyAccounts, accountSpinner);
 			//Setting up spinner for TaxRate
-			setUpTaxRateSpinner(bkm.TaxRates, taxRateSpinner);
+			SetUpTaxRateSpinner(bkm.TaxRates, taxRateSpinner);
 
 			//Setting up amount excl tax
 			amountET.TextChanged += delegate
 			{
-				setExclTax();
+				SetExclTax();
 			};
 
 			taxRateSpinner.ItemSelected += delegate 
 			{
-				setExclTax();
+				SetExclTax();
 			};
 
 			// Adding entry
@@ -185,12 +185,12 @@ namespace BookKeeper
 			//Setting up edit mode if true
 			if (isEditMode)
 			{
-				setUpEditModeView();
+				SetUpEditModeView();
 			}
 
 		}
 
-		private void setExclTax()
+		private void SetExclTax()
 		{
 			if (amountET.Text.Equals(""))
 			{
@@ -210,7 +210,7 @@ namespace BookKeeper
 			
 		}
 
-		private void setUpAccountSpinner(List<Account> list, Spinner spinner)
+		private void SetUpAccountSpinner(List<Account> list, Spinner spinner)
 		{
 			ArrayAdapter adapter = new ArrayAdapter<Account>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TypeSpinnerItemSelected);
@@ -218,7 +218,7 @@ namespace BookKeeper
 			spinner.Adapter = adapter;
 		}
 
-		private void setUpTaxRateSpinner(List<TaxRate> list, Spinner spinner)
+		private void SetUpTaxRateSpinner(List<TaxRate> list, Spinner spinner)
 		{
 			ArrayAdapter adapter = new ArrayAdapter<TaxRate>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TypeSpinnerItemSelected);
@@ -227,34 +227,34 @@ namespace BookKeeper
 		}
 
 		//Fills all fields with info from current Entry and changes button to edit mode.
-		private void setUpEditModeView()
+		private void SetUpEditModeView()
 		{
 
 			if (editEntry.EntryType == 1)
 			{
 				incomeRadioBtn.Checked = true;
-				setUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
-				setSelectionForAccountSpinner(bkm.IncomeAccounts, editEntry.TypeAccount, typeSpinner);
+				SetUpAccountSpinner(bkm.IncomeAccounts, typeSpinner);
+				SetSelectionForAccountSpinner(bkm.IncomeAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 			else if (editEntry.EntryType == 2)
 			{
 				expenseRadioBtn.Checked = true;
-				setUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
-				setSelectionForAccountSpinner(bkm.ExpenseAccounts, editEntry.TypeAccount, typeSpinner);
+				SetUpAccountSpinner(bkm.ExpenseAccounts, typeSpinner);
+				SetSelectionForAccountSpinner(bkm.ExpenseAccounts, editEntry.TypeAccount, typeSpinner);
 			}
 
 			date = editEntry.Date;
 			dateTV.Text = date.ToString("yyyy-MM-dd");
 			descriptionET.Text = editEntry.Description;
-			setSelectionForAccountSpinner(bkm.MoneyAccounts, editEntry.MoneyAccount, accountSpinner);
+			SetSelectionForAccountSpinner(bkm.MoneyAccounts, editEntry.MoneyAccount, accountSpinner);
 			amountET.Text = editEntry.Amount.ToString();
 			taxRateSpinner.SetSelection(editEntry.TaxRate-1);
-			setExclTax();
+			SetExclTax();
 
 			addEntryBtn.Text = "Ändra händelse";
 		}
 
-		private void setSelectionForAccountSpinner(List<Account> list, int accountNumber, Spinner spinner)
+		private void SetSelectionForAccountSpinner(List<Account> list, int accountNumber, Spinner spinner)
 		{
 			int listId = -1;
 			for (int i = 0; i < list.Count; i++)
