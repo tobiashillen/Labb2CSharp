@@ -92,6 +92,9 @@ namespace BookKeeper
 			// aapt resource value: 0x7f04001e
 			public const int lv_entries = 2130968606;
 			
+			// aapt resource value: 0x7f040022
+			public const int lv_taxReport = 2130968610;
+			
 			// aapt resource value: 0x7f040004
 			public const int radio_group = 2130968580;
 			
@@ -142,9 +145,6 @@ namespace BookKeeper
 			
 			// aapt resource value: 0x7f040003
 			public const int tv_new_entry_text = 2130968579;
-			
-			// aapt resource value: 0x7f040022
-			public const int tv_total_tax_paid = 2130968610;
 			
 			// aapt resource value: 0x7f04000f
 			public const int tv_type = 2130968591;

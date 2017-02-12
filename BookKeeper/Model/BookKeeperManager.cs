@@ -144,11 +144,11 @@ namespace Model
 				paidTaxTotal += paidTaxForEntry;
 				taxReport += e.Date.ToShortDateString() +
 							  " | " + e.Description +
-							  " | Belopp: " + e.Amount +
-							  "kr | Moms: " + paidTaxForEntry + " kr\n";
+							  " | \nBelopp: " + e.Amount +
+							  "kr | Moms: " + paidTaxForEntry + " kr *";
 			}
 
-			return taxReport + "\n Total moms: " + paidTaxTotal + " kr";
+			return taxReport + "Total moms: " + paidTaxTotal + " kr";
 		}
 	}
 }

@@ -19,17 +19,18 @@ namespace BookKeeper
 	public class TaxReportActivity : Activity
 	{
 
-		TextView totalTaxPaidTV;
+		ListView taxReportLV;
 		BookKeeperManager bkm;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.activity_tax_report);
 			SetTitle(Resource.String.title_tax_report_activity);
-			totalTaxPaidTV = FindViewById<TextView>(Resource.Id.tv_total_tax_paid);
+			taxReportLV = FindViewById<ListView>(Resource.Id.lv_taxReport);
 			bkm = BookKeeperManager.Instance;
-			totalTaxPaidTV.Text = bkm.GetTaxReport();
-
+			string[] taxReportList = bkm.GetTaxReport().Split('*');
+			taxReportLV.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, taxReportList);
 		}
 	}
 }
